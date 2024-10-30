@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Обчислення Куба або Квадрату</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+        .input-field {
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #4a90e2;
+            border-radius: 5px;
+        }
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Обчислення Куба або Квадрату</h1>
+    <input type="number" id="numberInput" class="input-field" placeholder="Введіть число">
+    <select id="operationSelect" class="input-field">
+        <option value="kub">Куб</option>
+        <option value="kvadrat">Квадрат</option>
+    </select>
+    <button class="button" onclick="calculate()">Обчислити</button>
+    <h2 id="result"></h2>
+
+    <script>
+        // Функція для обчислення куба числа
+        function kub(a) { 
+            return a * a * a;
+        }
+
+        // Функція для обчислення квадрату числа
+        function kvadrat(a) { 
+            return a * a;
+        }
+
+        // Функція для обчислення, яка приймає іншу функцію як аргумент
+        function calculate() {
+            const number = parseFloat(document.getElementById("numberInput").value);
+            const operation = document.getElementById("operationSelect").value;
+
+            if (isNaN(number)) {
+                alert("Будь ласка, введіть коректне число.");
+                return;
+            }
+
+            let result;
+            if (operation === "kub") {
+                result = performCalculation(number, kub);
+            } else if (operation === "kvadrat") {
+                result = performCalculation(number, kvadrat);
+            }
+
+            document.getElementById("result").innerText = `Результат: ${result}`;
+        }
+
+        // Функція, яка виконує обчислення, приймаючи число і функцію
+        function performCalculation(num, func) {
+            return func(num);
+        }
+    </script>
+</body>
+</html>
